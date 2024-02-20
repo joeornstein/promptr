@@ -2,7 +2,7 @@
 % Please edit documentation in R/format_prompt.R
 \name{format_prompt}
 \alias{format_prompt}
-\title{Format a Large Language Model (LLM) prompt}
+\title{Format an LLM prompt}
 \usage{
 format_prompt(
   text,
@@ -27,10 +27,10 @@ format_prompt(
 \item{separator}{A character that separates examples. Defaults to two carriage returns.}
 }
 \value{
-Returns a formatted prompt that can be used as input for \code{complete_prompt()}.
+Returns a formatted prompt that can be used as input for \code{complete_prompt()} or \code{openai::create_completion()}.
 }
 \description{
-Format a Large Language Model (LLM) prompt
+Format a text prompt for a Large Language Model. Particularly useful for few-shot text classification tasks. Note that if you are planning to use one of OpenAI's chat models, like ChatGPT or GPT-4, you will want to use the \code{format_chat()} function instead.
 }
 \examples{
 data(scotus_tweets_examples)

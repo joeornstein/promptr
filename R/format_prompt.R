@@ -1,4 +1,7 @@
-#' Format a Large Language Model (LLM) prompt
+#' Format an LLM prompt
+#'
+#' @description
+#' Format a text prompt for a Large Language Model. Particularly useful for few-shot text classification tasks. Note that if you are planning to use one of OpenAI's chat models, like ChatGPT or GPT-4, you will want to use the `format_chat()` function instead.
 #'
 #' @param text The text to be classified
 #' @param instructions Instructions to be included in the prompt (format them like you would format instructions to a human research assistant).
@@ -7,7 +10,7 @@
 #' @param prompt_template The template for the entire prompt. Defaults to instructions, followed by few-shot examples, followed by the input to be classified.
 #' @param separator A character that separates examples. Defaults to two carriage returns.
 #'
-#' @return Returns a formatted prompt that can be used as input for `complete_prompt()`.
+#' @return Returns a formatted prompt that can be used as input for `complete_prompt()` or `openai::create_completion()`.
 #' @export
 #'
 #' @examples

@@ -1,10 +1,10 @@
 Package: promptr
-Title: What the Package Does (One Line, Title Case)
+Title: Format and Complete Few-Shot LLM Prompts
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Joe", "Ornstsein", , "jornstein@uga.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-5704-2098"))
+Description: The `promptr` package allows R users to format and submit few-shot prompts to OpenAI's Large Language Models (LLMs). It is designed to be particularly useful for text classification problems in the social sciences.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8

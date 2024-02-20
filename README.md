@@ -26,19 +26,19 @@ This is a basic example:
 ``` r
 library(promptr)
 
-prompt <- format_prompt(text = 'I am sad', 
+prompt <- format_prompt(text = 'I am genuinely morose.', 
                         instructions = 'Classify this text as sad or happy.')
 prompt
 #> Classify this text as sad or happy.
 #> 
-#> Text: I am sad
+#> Text: I am genuinely morose.
 #> Classification:
 
 complete_prompt(prompt)
 #>    token probability
-#> 1    sad  0.34807921
-#> 2    Sad  0.28632215
-#> 3  happy  0.07706258
-#> 4  Happy  0.04710741
-#> 5         0.04495020
+#> 1    Sad  0.30095155
+#> 2    sad  0.18833067
+#> 3  Happy  0.10985229
+#> 4  happy  0.06662878
+#> 5         0.03196884
 ```

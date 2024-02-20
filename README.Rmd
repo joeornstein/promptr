@@ -36,7 +36,7 @@ This is a basic example:
 ```{r example}
 library(promptr)
 
-prompt <- format_prompt(text = 'I am sad', 
+prompt <- format_prompt(text = 'I am genuinely morose.', 
                         instructions = 'Classify this text as sad or happy.')
 prompt
 

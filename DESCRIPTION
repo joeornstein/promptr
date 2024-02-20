@@ -5,8 +5,7 @@ Authors@R:
     person("Joe", "Ornstsein", , "jornstein@uga.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5704-2098"))
 Description: The `promptr` package allows R users to format and submit few-shot prompts to OpenAI's Large Language Models (LLMs). It is designed to be particularly useful for text classification problems in the social sciences.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3

@@ -1,0 +1,46 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# promptr
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of `promptr` is to create a simple interface for `R` users to format and submit prompts to OpenAI's Large Language Models (LLMs).
+
+## Installation
+
+You can install the development version of promptr from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("joeornstein/promptr")
+```
+
+## Example
+
+This is a basic example:
+
+```{r example}
+library(promptr)
+
+prompt <- format_prompt(text = 'I am sad', 
+                        instructions = 'Classify this text as sad or happy.')
+prompt
+
+complete_prompt(prompt)
+```
+
+

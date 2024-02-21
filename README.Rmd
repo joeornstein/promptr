@@ -18,11 +18,11 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `promptr` is to create a simple interface for `R` users to format and submit prompts to OpenAI's Large Language Models (LLMs).
+The goal of `promptr` is to create a straightforward interface for `R` users to format and submit prompts to OpenAI's Large Language Models (LLMs).
 
 ## Installation
 
-You can install the development version of promptr from [GitHub](https://github.com/) with:
+You can install the development version of `promptr` from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -31,16 +31,52 @@ devtools::install_github("joeornstein/promptr")
 
 ## Example
 
-This is a basic example:
+The package workflow is built around two functions: `format_prompt()` and `complete_prompt()`. The first allows you to format a prompt from three inputs.
 
-```{r example}
+```{r}
 library(promptr)
 
-prompt <- format_prompt(text = 'I am genuinely morose.', 
-                        instructions = 'Classify this text as sad or happy.')
+prompt <- format_prompt(text = 'I feel positively morose.', 
+                        instructions = 'Classify the following text as sad or happy.')
+prompt
+```
+
+This is a **zero-shot** prompt (no labeled examples provided).
+
+Once you've formatted the prompt, you can submit it to an LLM through the OpenAI API using the `complete_prompt()` function. 
+
+```{r}
+complete_prompt(prompt)
+```
+
+Pretty good, but these models often perform better if we provide few-shot examples.
+
+```{r}
+examples <- data.frame(
+  text = c('What a pleasant day!', 
+           'Oh bother.',
+           'Merry Christmas!',
+           ':-('),
+  label = c('happy', 'sad', 'happy', 'sad')
+)
+
+prompt <- format_prompt(
+  text = 'I feel positively morose.', 
+  instructions = 'Classify the following text as sad or happy.',
+  examples = examples
+  )
+
 prompt
 
 complete_prompt(prompt)
 ```
 
+The complete pipeline:
+
+```{r}
+'What a joyous day...for our adversaries.' |> 
+  format_prompt(instructions = 'Classify this text as happy or sad.',
+                examples = examples) |> 
+  complete_prompt()
+```
 

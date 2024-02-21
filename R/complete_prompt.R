@@ -74,7 +74,7 @@ complete_prompt <- function(prompt,
       httr::status_code(response),
       "]:\n\n",
       parsed$error$message
-    ) %>%
+    ) |>
       stop(call. = FALSE)
   }
 

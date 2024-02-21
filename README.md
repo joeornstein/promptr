@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# promptr
+# promptr <img src="man/figures/logo.png" align="right" height="89" />
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -45,12 +45,12 @@ the OpenAI API using the `complete_prompt()` function.
 
 ``` r
 complete_prompt(prompt)
-#>    token probability
-#> 1    Sad  0.32946914
-#> 2    sad  0.22467843
-#> 3  Happy  0.10949952
-#> 4  happy  0.09439449
-#> 5    Mor  0.01932781
+#>   token probability
+#> 1   Sad 0.837170505
+#> 2   sad 0.121762239
+#> 3       0.029757389
+#> 4   Sad 0.007920812
+#> 5       0.001315101
 ```
 
 Pretty good, but these models often perform better if we provide
@@ -90,12 +90,12 @@ prompt
 #> Classification:
 
 complete_prompt(prompt)
-#>      token probability
-#> 1      sad 0.905665026
-#> 2    happy 0.054389411
-#> 3  unhappy 0.009089383
-#> 4     very 0.002997360
-#> 5      mor 0.001604371
+#>   token  probability
+#> 1   sad 9.994194e-01
+#> 2   sad 3.485589e-04
+#> 3       6.669017e-05
+#> 4   Sad 4.741163e-05
+#> 5       2.732130e-05
 ```
 
 The complete pipeline:
@@ -105,10 +105,10 @@ The complete pipeline:
   format_prompt(instructions = 'Classify this text as happy or sad.',
                 examples = examples) |> 
   complete_prompt()
-#>      token probability
-#> 1      sad  0.53916775
-#> 2    happy  0.26690740
-#> 3  neutral  0.03237954
-#> 4    angry  0.02813183
-#> 5  unhappy  0.01287969
+#>     token probability
+#> 1     sad 0.943167941
+#> 2   happy 0.025118230
+#> 3   mixed 0.010077296
+#> 4 neutral 0.005379849
+#> 5 unhappy 0.003560845
 ```

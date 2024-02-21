@@ -15,7 +15,7 @@ complete_prompt(
 \arguments{
 \item{prompt}{The prompt}
 
-\item{model}{Which OpenAI model to use. Defaults to 'davinci-002'}
+\item{model}{Which OpenAI model to use. Defaults to 'gpt-3.5-turbo-instruct'}
 
 \item{openai_api_key}{Your API key. By default, looks for a system environment variable called "OPENAI_API_KEY" (recommended option). Otherwise, it will prompt you to enter the API key as an argument.}
 

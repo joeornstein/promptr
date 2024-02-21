@@ -30,6 +30,6 @@ Format a chat prompt to submit to OpenAI's ChatGPT or GPT-4 (particularly useful
 data(scotus_tweets_examples)
 
 format_chat(text = "I am disappointed with this ruling.",
-                   instructions = "Decide if the statement's sentiment is Positive or Negative.",
+                   instructions = "Decide if the statement is Positive or Negative.",
                    examples = scotus_tweets_examples)
 }

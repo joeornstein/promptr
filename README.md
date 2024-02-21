@@ -101,14 +101,14 @@ complete_prompt(prompt)
 The complete pipeline:
 
 ``` r
-'What a joyous day...for our adversaries.' |> 
+'What a joyous day for our adversaries.' |> 
   format_prompt(instructions = 'Classify this text as happy or sad.',
                 examples = examples) |> 
   complete_prompt()
-#>     token probability
-#> 1     sad 0.943167941
-#> 2   happy 0.025118230
-#> 3   mixed 0.010077296
-#> 4 neutral 0.005379849
-#> 5 unhappy 0.003560845
+#>     token  probability
+#> 1     sad 0.9931754130
+#> 2   happy 0.0023576333
+#> 3     sad 0.0021634900
+#> 4     Sad 0.0007275062
+#> 5 unhappy 0.0006792638
 ```

@@ -74,7 +74,7 @@ complete_prompt(prompt)
 The complete pipeline:
 
 ```{r}
-'What a joyous day...for our adversaries.' |> 
+'What a joyous day for our adversaries.' |> 
   format_prompt(instructions = 'Classify this text as happy or sad.',
                 examples = examples) |> 
   complete_prompt()

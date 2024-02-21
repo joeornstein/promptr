@@ -81,13 +81,20 @@ complete_prompt <- function(prompt,
   # if max_tokens > 1, return the text
   to_return <- parsed$choices$text
 
-  # if max_tokens == 1, return a tidy dataframe of probabilities
+  # if max_tokens == 1, return a tidy dataframe of probabilities for each prompt
   if(max_tokens == 1){
-    tokens <- names(parsed$choices$logprobs.top_logprobs[[1]])
-    logprobs <- as.numeric(parsed$choices$logprobs.top_logprobs[[1]])
+    tokens <- lapply(parsed$choices$logprobs.top_logprobs, names)
+    logprobs <- lapply(parsed$choices$logprobs.top_logprobs, as.numeric)
 
-    to_return <- data.frame(token = tokens,
-                           probability = exp(logprobs))
+    to_return <- Map(function(token,logprob){
+      data.frame(token = trimws(token),
+                 probability = exp(logprob))
+    }, tokens, logprobs)
+
+    # don't return it as a list if there's only one prompt in the input
+    if(length(prompt) == 1){
+      to_return <- to_return[[1]]
+    }
   }
 
   return(to_return)

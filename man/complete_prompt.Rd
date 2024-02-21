@@ -6,7 +6,7 @@
 \usage{
 complete_prompt(
   prompt,
-  model = "davinci-002",
+  model = "gpt-3.5-turbo-instruct",
   openai_api_key = Sys.getenv("OPENAI_API_KEY"),
   max_tokens = 1,
   temperature = 0

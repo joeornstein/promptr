@@ -18,7 +18,7 @@
 #' complete_prompt('Here is my haiku about frogs:',
 #'                 max_tokens = 100)
 complete_prompt <- function(prompt,
-                            model = 'davinci-002',
+                            model = 'gpt-3.5-turbo-instruct',
                             openai_api_key = Sys.getenv('OPENAI_API_KEY'),
                             max_tokens = 1,
                             temperature = 0) {

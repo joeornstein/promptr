@@ -17,10 +17,10 @@
 #' format_chat('Are frogs sentient? Yes or No.') |> complete_chat()
 #' format_chat('Write a haiku about frogs.') |> complete_chat(max_tokens = 100)
 complete_chat <- function(prompt,
-                            model = 'gpt-3.5-turbo',
-                            openai_api_key = Sys.getenv('OPENAI_API_KEY'),
-                            max_tokens = 1,
-                            temperature = 1) {
+                          model = 'gpt-3.5-turbo',
+                          openai_api_key = Sys.getenv('OPENAI_API_KEY'),
+                          max_tokens = 1,
+                          temperature = 1) {
 
   if(openai_api_key == ''){
     stop("No API key detected in system environment. You can enter it manually using the 'openai_api_key' argument.")

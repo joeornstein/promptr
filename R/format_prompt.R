@@ -17,7 +17,7 @@
 #' data(scotus_tweets_examples)
 #'
 #' format_prompt(text = "I am disappointed with this ruling.",
-#'               instructions = "Decide whether the sentiment of this statement is Positive or Negative.",
+#'               instructions = "Decide if the sentiment of this statement is Positive or Negative.",
 #'               examples = scotus_tweets_examples,
 #'               template = "Statement: {text}\nSentiment: {label}")
 #'
@@ -37,8 +37,9 @@ format_prompt <- function(text,
     examples <- ''
   } else{
     examples <- examples |>
-      dplyr::mutate(prompt_segment = glue::glue(template)) |>
-      dplyr::pull(prompt_segment) |>
+      dplyr::mutate(prompt_segment = glue::glue(template))
+
+    examples <- examples$prompt_segment |>
       paste(collapse = separator) |>
       paste0(separator)
   }

@@ -36,7 +36,7 @@ Format a text prompt for a Large Language Model. Particularly useful for few-sho
 data(scotus_tweets_examples)
 
 format_prompt(text = "I am disappointed with this ruling.",
-              instructions = "Decide whether the sentiment of this statement is Positive or Negative.",
+              instructions = "Decide if the sentiment of this statement is Positive or Negative.",
               examples = scotus_tweets_examples,
               template = "Statement: {text}\nSentiment: {label}")
 

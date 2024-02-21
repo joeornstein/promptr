@@ -3,7 +3,7 @@
 #' @description
 #' Format a text prompt for a Large Language Model. Particularly useful for few-shot text classification tasks. Note that if you are planning to use one of OpenAI's chat models, like ChatGPT or GPT-4, you will want to use the `format_chat()` function instead.
 #'
-#' @param text The text to be classified
+#' @param text The text to be classified. Can be a character vector or a single string.
 #' @param instructions Instructions to be included in the prompt (format them like you would format instructions to a human research assistant).
 #' @param examples A dataframe of "few-shot" examples. Must include one column called 'text' with the example text(s) and another column called "label" with the correct label(s).
 #' @param template The template for how examples and completions should be formatted, in `glue` syntax. If you are including few-shot examples in the prompt, this must contain the \{text\} and \{label\} placeholders.

@@ -14,7 +14,7 @@ format_prompt(
 )
 }
 \arguments{
-\item{text}{The text to be classified}
+\item{text}{The text to be classified. Can be a character vector or a single string.}
 
 \item{instructions}{Instructions to be included in the prompt (format them like you would format instructions to a human research assistant).}
 

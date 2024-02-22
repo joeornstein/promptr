@@ -75,9 +75,9 @@ reference](https://platform.openai.com/docs/api-reference/completions)
 for more on these parameters).
 
 You can also change which model variant the function calls using the
-`model` input. By default, it is set to “gpt-3.5-turbo”, the RLHF
-variant of GPT-3.5. For the base GPT-3 variants, try “davinci-002” (175
-billion parameters) or “babbage-002” (1.3 billion parameters).
+`model` input. By default, it is set to “gpt-3.5-turbo-instruct”, the
+RLHF variant of GPT-3.5. For the base GPT-3 variants, try “davinci-002”
+(175 billion parameters) or “babbage-002” (1.3 billion parameters).
 
 ## Formatting Prompts
 
@@ -115,9 +115,9 @@ format_prompt(text = 'I feel positively morose today.',
 
 This function is particularly useful when including few-shot examples in
 the prompt. If you input these examples as a tidy dataframe, the
-`format_prompt()` function will paste them into the prompt them
-according to the template. The `examples` dataframe must have at least
-two columns, one called “text” and the other called “label”.
+`format_prompt()` function will paste them into the prompt according to
+the template. The `examples` dataframe must have at least two columns,
+one called “text” and the other called “label”.
 
 ``` r
 examples <- data.frame(
@@ -199,39 +199,39 @@ users can submit multiple texts to be classified simultaneously.
 texts <- c('What a wonderful world??? As if!', 'Things are looking up.', 'Me gusta mi vida.')
 
 texts |> 
-  format_prompt(instructions = 'Classify these text as happy or sad.',
+  format_prompt(instructions = 'Classify these texts as happy or sad.',
                 examples = examples) |> 
   complete_prompt()
 #> [[1]]
-#>     token probability
-#> 1     sad 0.981900444
-#> 2   happy 0.010584856
-#> 3     sad 0.001769761
-#> 4 sarcast 0.001437401
-#> 5 unhappy 0.001193608
+#>     token  probability
+#> 1     sad 0.9845923503
+#> 2   happy 0.0101702041
+#> 3     sad 0.0022756506
+#> 4 unhappy 0.0005526699
+#> 5         0.0005016985
 #> 
 #> [[2]]
 #>   token  probability
-#> 1 happy 9.989732e-01
-#> 2 happy 7.961309e-04
-#> 3       6.114326e-05
-#> 4       4.282759e-05
-#> 5    ha 1.875665e-05
+#> 1 happy 9.989156e-01
+#> 2 happy 8.004715e-04
+#> 3       8.129598e-05
+#> 4       5.734132e-05
+#> 5 Happy 2.008436e-05
 #> 
 #> [[3]]
-#>       token  probability
-#> 1     happy 9.972202e-01
-#> 2     happy 1.275440e-03
-#> 3           5.395673e-04
-#> 4    unsure 1.204601e-04
-#> 5 happiness 8.129606e-05
+#>    token  probability
+#> 1  happy 0.9957006846
+#> 2  happy 0.0012367921
+#> 3        0.0009202636
+#> 4 unsure 0.0002593114
+#> 5        0.0001682163
 ```
 
 ## Example: Supreme Court Tweets
 
 To illustrate the entire workflow, let’s classify the sentiment of
-social media posts from the Supreme Court Tweets dataset included with
-the package.
+social media posts from the Supreme Court Tweets dataset included in the
+package.
 
 ``` r
 data(scotus_tweets) # the full dataset
@@ -239,25 +239,11 @@ data(scotus_tweets_examples) # a dataframe with few-shot examples
 ```
 
 Let’s focus on tweets posted following the *Masterpiece Cakeshop v
-Colorado* (2018) decision, including a set of instructions and few-shot
-examples tailored to that context.
+Colorado* (2018) decision, formatting the prompts with a set of
+instructions and few-shot examples tailored to that context.
 
 ``` r
 library(tidyverse)
-#> Warning: package 'tidyverse' was built under R version 4.2.3
-#> Warning: package 'ggplot2' was built under R version 4.2.3
-#> Warning: package 'tibble' was built under R version 4.2.3
-#> Warning: package 'dplyr' was built under R version 4.2.3
-#> ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-#> ✔ dplyr     1.1.4     ✔ readr     2.1.4
-#> ✔ forcats   1.0.0     ✔ stringr   1.5.0
-#> ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-#> ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-#> ✔ purrr     1.0.1     
-#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-#> ✖ dplyr::filter() masks stats::filter()
-#> ✖ dplyr::lag()    masks stats::lag()
-#> ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 
 masterpiece_tweets <- scotus_tweets |> 
   filter(case == 'masterpiece')
@@ -304,16 +290,16 @@ masterpiece_tweets$prompt[3]
 #> Classification:
 ```
 
-Then we can submit the list prompts using `complete_prompt()`:
+Then we can submit this list of prompts using `complete_prompt()`:
 
 ``` r
 masterpiece_tweets$out <- complete_prompt(masterpiece_tweets$prompt)
 ```
 
-The estimated probability distribution for each completion is now in a
-list in the `out` column. We can compute a simple sentiment score by
-subtracting the estimated probability the tweet is Positive minus the
-estimated probability the tweet is Negative:
+The estimated probability distribution for each completion is now a list
+of dataframes in the `out` column. We can compute a simple sentiment
+score by computing the estimated probability each tweet is Positive
+minus the estimated probability the tweet is Negative:
 
 ``` r
 masterpiece_tweets$score <- masterpiece_tweets$out |> 
@@ -339,23 +325,18 @@ ggplot(data = masterpiece_tweets,
   labs(x = 'Hand-Coded Sentiment',
        y = 'GPT-3.5 Sentiment Score') +
   theme_bw()
-#> Warning: Removed 17 rows containing missing values (`geom_point()`).
 ```
 
 <img src="man/figures/README-unnamed-chunk-15-1.png" width="100%" />
 
 ## Chat Completions
 
-The most recent OpenAI language models, including ChatGPT and GPT-4 have
+The most recent OpenAI language models—including ChatGPT and GPT-4—have
 been fine-tuned to function as “chat” models, and interacting with them
 through the API requires a slightly different format for the inputs.
 Instead of a single text prompt, few-shot prompts are expressed in the
 form of a “dialogue” between the user and the model, which we can
 represent in `R` as a “list of lists”.
-
-Users can submit a chat prompt to the API using the `complete_chat()`
-function. The default model is “gpt-3.5-turbo” (the most cost-effective
-chat model offered through the API as of February 2024).
 
 ``` r
 prompt <- list(
@@ -366,14 +347,19 @@ prompt <- list(
   list(role = 'user',
        content = 'I need to explain why Frederick the Great was so fond of potatoes?')
 )
-
-complete_chat(prompt,
-              max_tokens = 300)
-#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for his subjects, especially during times of famine or food shortages.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia because they were easy to grow and had a high yield, making them a cost-effective and sustainable crop. This helped to improve food security and alleviate hunger in the region.\n\nFurthermore, Frederick saw the potential economic benefits of promoting potato cultivation. Potatoes could be grown in poor soil and harsh climates, making them a reliable crop that could be grown in abundance. This would not only benefit the people of Prussia but also boost the economy through increased agricultural production and trade.\n\nOverall, Frederick the Great's fondness for potatoes was driven by their nutritional value, ease of cultivation, and economic potential, making them a valuable and important crop for his kingdom."
 ```
 
-The `format_chat()` function allows users to create this list using the
-same syntax as `format_prompt()`.
+Users can submit a chat prompt to the API using the `complete_chat()`
+function. The default model is “gpt-3.5-turbo” (the most cost-effective
+chat model offered through the API as of February 2024).
+
+``` r
+complete_chat(prompt, max_tokens = 300)
+#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for both humans and livestock.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia as a way to combat famine and food shortages. Potatoes are a hardy crop that can grow in a variety of soil conditions and climates, making them a reliable and sustainable food source.\n\nFurthermore, Frederick saw the economic potential of potatoes as a cash crop. Potatoes could be grown in abundance and stored for long periods of time, making them a valuable commodity for trade and export.\n\nOverall, Frederick the Great's fondness for potatoes was based on their nutritional value, versatility, and economic potential, as well as their ability to address food shortages and promote agricultural development in Prussia."
+```
+
+The `format_chat()` function allows users to create a chat prompt using
+the same syntax as `format_prompt()`.
 
 ``` r
 tweet <- masterpiece_tweets$text[4]

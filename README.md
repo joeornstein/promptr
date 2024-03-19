@@ -183,11 +183,11 @@ submitting the prompt for completion—looks like this:
                 examples = examples) |> 
   complete_prompt()
 #>     token  probability
-#> 1     sad 0.9931754130
-#> 2   happy 0.0023576333
-#> 3     sad 0.0021634900
-#> 4     Sad 0.0007275062
-#> 5 unhappy 0.0006792638
+#> 1     sad 0.9934709978
+#> 2   happy 0.0019514660
+#> 3     sad 0.0018815093
+#> 4     Sad 0.0009842821
+#> 5 unhappy 0.0007852307
 ```
 
 The biggest advantage of using text prompts like these is
@@ -357,7 +357,7 @@ chat model offered through the API as of February 2024).
 
 ``` r
 complete_chat(prompt, max_tokens = 300)
-#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for his subjects, especially during times of famine or food shortages.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia as a way to improve agricultural productivity and reduce dependence on traditional crops like wheat and rye. Potatoes are a hardy crop that can grow in a variety of soil conditions and climates, making them a reliable and sustainable food source.\n\nOverall, Frederick the Great's promotion of potatoes helped to improve the food security and nutrition of his people, leading to their widespread adoption and popularity in Prussia and beyond."
+#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for both humans and livestock.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia as a way to combat famine and food shortages. Potatoes are a hardy crop that can grow in a variety of soil conditions and climates, making them a reliable food source that could help alleviate hunger and poverty.\n\nFurthermore, Frederick saw the economic potential of potatoes as a cash crop. Potatoes were relatively easy to grow and could be stored for long periods of time, making them a valuable commodity for trade and export.\n\nOverall, Frederick the Great's fondness for potatoes was based on their nutritional value, versatility, and economic potential, as well as their ability to address food shortages and promote agricultural development in Prussia."
 ```
 
 The `format_chat()` function allows users to create a chat prompt using
@@ -497,9 +497,9 @@ disadvantage is that we can only submit one chat to the API at a time.
 response <- complete_chat(prompt)
 response
 #>      token  probability
-#> 1 Positive 7.766790e-01
-#> 2  Neutral 2.185190e-01
-#> 3 Negative 2.458443e-03
-#> 4    Mixed 2.328238e-03
-#> 5 positive 3.561104e-06
+#> 1 Positive 6.812474e-01
+#> 2  Neutral 3.082982e-01
+#> 3    Mixed 6.463463e-03
+#> 4 Negative 3.971882e-03
+#> 5      Mix 5.928140e-06
 ```

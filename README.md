@@ -26,17 +26,19 @@ devtools::install_github("joeornstein/promptr")
 You will also need an account with OpenAI. You can sign up
 [here](https://beta.openai.com/signup), after which you’ll need to
 generate an API key
-[here](https://platform.openai.com/account/api-keys). We recommend
-adding this API key as a variable in your operating system environment
-called `OPENAI_API_KEY`; that way you won’t risk leaking it by
-hard-coding it into your R scripts. The `promptr` package will
-automatically look for your API key under that variable name, and will
-ask you to enter the API key manually if it can’t find one there. If
-you’re unfamiliar with setting Environment Variables in your operating
-system,
-[here](https://dev.to/biplov/handling-passwords-and-secret-keys-using-environment-variables-2ei0)
-are some helpful instructions. Note that you may need to restart your
-computer after completing this step.
+[here](https://platform.openai.com/account/api-keys). For best
+performance, you may also want to provide credit card information (this
+significantly boosts your API rate limit, even if you’re not spending
+money).
+
+Once your account is created, copy-paste your API key into the following
+line of R code.
+
+    library(fuzzylink)
+
+    openai_api_key('YOUR API KEY GOES HERE', install = TRUE)
+
+Now you’re all set up!
 
 ## Completing Prompts
 
@@ -50,11 +52,11 @@ library(promptr)
 
 complete_prompt('I feel like a')
 #>    token probability
-#> 1    lot  0.20988509
-#> 2 little  0.02118226
-#> 3    kid  0.01375050
-#> 4    new  0.01209023
-#> 5    big  0.01204562
+#> 1    lot  0.20988471
+#> 2 little  0.02118223
+#> 3    kid  0.01375048
+#> 4    new  0.01209021
+#> 5    big  0.01204560
 ```
 
 If you prefer the model to autoregressively generate text instead of
@@ -204,19 +206,19 @@ texts |>
   complete_prompt()
 #> [[1]]
 #>     token  probability
-#> 1     sad 0.9845923503
-#> 2   happy 0.0101702041
-#> 3     sad 0.0022756506
-#> 4 unhappy 0.0005526699
-#> 5         0.0005016985
+#> 1     sad 0.9841034277
+#> 2   happy 0.0104374049
+#> 3     sad 0.0023295706
+#> 4 unhappy 0.0005694547
+#> 5         0.0005513914
 #> 
 #> [[2]]
 #>   token  probability
-#> 1 happy 9.989156e-01
-#> 2 happy 8.004715e-04
-#> 3       8.129598e-05
-#> 4       5.734132e-05
-#> 5 Happy 2.008436e-05
+#> 1 happy 9.989103e-01
+#> 2 happy 8.046505e-04
+#> 3       7.620519e-05
+#> 4       5.893237e-05
+#> 5 Happy 2.052843e-05
 #> 
 #> [[3]]
 #>    token  probability
@@ -355,7 +357,7 @@ chat model offered through the API as of February 2024).
 
 ``` r
 complete_chat(prompt, max_tokens = 300)
-#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for both humans and livestock.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia as a way to combat famine and food shortages. Potatoes are a hardy crop that can grow in a variety of soil conditions and climates, making them a reliable and sustainable food source.\n\nFurthermore, Frederick saw the economic potential of potatoes as a cash crop. Potatoes could be grown in abundance and stored for long periods of time, making them a valuable commodity for trade and export.\n\nOverall, Frederick the Great's fondness for potatoes was based on their nutritional value, versatility, and economic potential, as well as their ability to address food shortages and promote agricultural development in Prussia."
+#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for his subjects, especially during times of famine or food shortages.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia because they were easy to grow and had a high yield, making them a cost-effective and efficient crop for farmers. This helped to improve food security and agricultural productivity in the region.\n\nFurthermore, Frederick saw the potential of potatoes as a way to reduce dependence on imported grains like wheat and rye, which were more susceptible to crop failures and price fluctuations. By promoting the cultivation and consumption of potatoes, Frederick aimed to strengthen the economy and food self-sufficiency of Prussia.\n\nOverall, Frederick the Great's fondness for potatoes was driven by their nutritional value, agricultural benefits, and potential to improve the well-being of his subjects and the economy of Prussia."
 ```
 
 The `format_chat()` function allows users to create a chat prompt using
@@ -495,9 +497,9 @@ disadvantage is that we can only submit one chat to the API at a time.
 response <- complete_chat(prompt)
 response
 #>      token  probability
-#> 1 Positive 6.692476e-01
-#> 2  Neutral 3.203328e-01
-#> 3    Mixed 7.533778e-03
-#> 4 Negative 2.861993e-03
-#> 5      Mix 7.588922e-06
+#> 1 Positive 6.915661e-01
+#> 2  Neutral 2.971225e-01
+#> 3    Mixed 7.296326e-03
+#> 4 Negative 3.990773e-03
+#> 5      Mix 9.099883e-06
 ```

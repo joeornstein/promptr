@@ -36,7 +36,7 @@ You will also need an account with OpenAI. You can sign up [here](https://beta.o
 Once your account is created, copy-paste your API key into the following line of R code.
 
 ```
-library(fuzzylink)
+library(promptr)
 
 openai_api_key('YOUR API KEY GOES HERE', install = TRUE)
 ```
@@ -169,7 +169,7 @@ masterpiece_tweets$out <- complete_prompt(masterpiece_tweets$prompt)
 load('data-raw/masterpiece_tweets.RData')
 ```
 
-The estimated probability distribution for each completion is now a list of dataframes in the `out` column. We can compute a simple sentiment score by computing the estimated probability each tweet is Positive minus the estimated probability the tweet is Negative:
+The estimated probability distribution for each completion is now a list of dataframes in the `out` column. We can compute a simple sentiment score by taking the estimated probability each tweet is Positive minus the estimated probability the tweet is Negative:
 
 ```{r}
 masterpiece_tweets$score <- masterpiece_tweets$out |> 

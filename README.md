@@ -34,7 +34,7 @@ money).
 Once your account is created, copy-paste your API key into the following
 line of R code.
 
-    library(fuzzylink)
+    library(promptr)
 
     openai_api_key('YOUR API KEY GOES HERE', install = TRUE)
 
@@ -300,8 +300,8 @@ masterpiece_tweets$out <- complete_prompt(masterpiece_tweets$prompt)
 
 The estimated probability distribution for each completion is now a list
 of dataframes in the `out` column. We can compute a simple sentiment
-score by computing the estimated probability each tweet is Positive
-minus the estimated probability the tweet is Negative:
+score by taking the estimated probability each tweet is Positive minus
+the estimated probability the tweet is Negative:
 
 ``` r
 masterpiece_tweets$score <- masterpiece_tweets$out |> 
@@ -357,7 +357,7 @@ chat model offered through the API as of February 2024).
 
 ``` r
 complete_chat(prompt, max_tokens = 300)
-#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for his subjects, especially during times of famine or food shortages.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia because they were easy to grow and had a high yield, making them a cost-effective and efficient crop for farmers. This helped to improve food security and agricultural productivity in the region.\n\nFurthermore, Frederick saw the potential of potatoes as a way to reduce dependence on imported grains like wheat and rye, which were more susceptible to crop failures and price fluctuations. By promoting the cultivation and consumption of potatoes, Frederick aimed to strengthen the economy and food self-sufficiency of Prussia.\n\nOverall, Frederick the Great's fondness for potatoes was driven by their nutritional value, agricultural benefits, and potential to improve the well-being of his subjects and the economy of Prussia."
+#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for his subjects, especially during times of famine or food shortages.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia as a way to improve agricultural productivity and reduce dependence on traditional crops like wheat and rye. Potatoes are a hardy crop that can grow in a variety of soil conditions and climates, making them a reliable and sustainable food source.\n\nOverall, Frederick the Great's promotion of potatoes helped to improve the food security and nutrition of his people, leading to their widespread adoption and popularity in Prussia and beyond."
 ```
 
 The `format_chat()` function allows users to create a chat prompt using
@@ -497,9 +497,9 @@ disadvantage is that we can only submit one chat to the API at a time.
 response <- complete_chat(prompt)
 response
 #>      token  probability
-#> 1 Positive 6.915661e-01
-#> 2  Neutral 2.971225e-01
-#> 3    Mixed 7.296326e-03
-#> 4 Negative 3.990773e-03
-#> 5      Mix 9.099883e-06
+#> 1 Positive 7.766790e-01
+#> 2  Neutral 2.185190e-01
+#> 3 Negative 2.458443e-03
+#> 4    Mixed 2.328238e-03
+#> 5 positive 3.561104e-06
 ```

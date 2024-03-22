@@ -53,7 +53,7 @@ complete_chat <- function(prompt,
   }
 
   # format a list of requests
-  if(length(prompt) == 1) prompt <- list(prompt)
+  if(is.character(prompt[[1]][[1]])) prompt <- list(prompt) # if prompt is singular, this condition will be true
   reqs <- lapply(prompt, format_request)# Map(f = format_request, prompt = prompt)
 
   # submit prompts sequentially or in parallel

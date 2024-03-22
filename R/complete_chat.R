@@ -49,7 +49,8 @@ complete_chat <- function(prompt,
                                 max_tokens = max_tokens,
                                 logprobs = logprobs,
                                 top_logprobs = top_logprobs,
-                                seed = seed))
+                                seed = seed)) #|>
+      #httr2::req_retry(max_tries = 10)
   }
 
   # format a list of requests

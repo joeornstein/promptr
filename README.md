@@ -55,11 +55,11 @@ library(promptr)
 
 complete_prompt('I feel like a')
 #>    token probability
-#> 1    lot  0.20993738
-#> 2 little  0.02117687
-#> 3    kid  0.01376141
-#> 4    new  0.01209059
-#> 5    big  0.01202617
+#> 1    lot  0.20988509
+#> 2 little  0.02118226
+#> 3    kid  0.01375050
+#> 4    new  0.01209023
+#> 5    big  0.01204562
 ```
 
 If you prefer the model to autoregressively generate text instead of
@@ -185,11 +185,11 @@ submitting the prompt for completion—looks like this:
                 examples = examples) |> 
   complete_prompt()
 #>     token  probability
-#> 1     sad 0.9932038709
-#> 2   happy 0.0023338934
-#> 3     sad 0.0021613907
-#> 4     Sad 0.0007306434
-#> 5 unhappy 0.0006758881
+#> 1     sad 0.9931754130
+#> 2   happy 0.0023576333
+#> 3     sad 0.0021634900
+#> 4     Sad 0.0007275062
+#> 5 unhappy 0.0006792638
 ```
 
 The biggest advantage of using text prompts like these is
@@ -208,11 +208,11 @@ texts |>
   complete_prompt()
 #> [[1]]
 #>     token  probability
-#> 1     sad 0.9841034277
-#> 2   happy 0.0104374049
-#> 3     sad 0.0023295706
-#> 4 unhappy 0.0005694547
-#> 5         0.0005513914
+#> 1     sad 0.9845923503
+#> 2   happy 0.0101702041
+#> 3     sad 0.0022756506
+#> 4 unhappy 0.0005526699
+#> 5         0.0005016985
 #> 
 #> [[2]]
 #>   token  probability
@@ -224,11 +224,11 @@ texts |>
 #> 
 #> [[3]]
 #>    token  probability
-#> 1  happy 0.9957006846
-#> 2  happy 0.0012367921
-#> 3        0.0009202636
-#> 4 unsure 0.0002593114
-#> 5        0.0001682163
+#> 1  happy 0.9959302565
+#> 2  happy 0.0013791755
+#> 3        0.0009389405
+#> 4 unsure 0.0001865297
+#> 5        0.0001515698
 ```
 
 ## Example: Supreme Court Tweets
@@ -359,7 +359,7 @@ chat model offered through the API as of February 2024).
 
 ``` r
 complete_chat(prompt, max_tokens = 300)
-#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for his subjects, especially during times of famine or food shortages.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia because they were easy to grow and had a high yield compared to other crops. This made potatoes a cost-effective and efficient food source for the population.\n\nFurthermore, Frederick saw the potential of potatoes to improve the agricultural economy of Prussia. By encouraging the cultivation of potatoes, he aimed to reduce the country's dependence on imported grains and increase self-sufficiency in food production.\n\nOverall, Frederick the Great's fondness for potatoes was driven by their nutritional value, ease of cultivation, and potential to improve the economy and food security of Prussia."
+#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for his subjects, especially during times of famine or food shortages.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia because they were easy to grow and had a high yield compared to other crops. This made potatoes a cost-effective and sustainable food source for the population.\n\nFurthermore, Frederick saw the potential economic benefits of promoting potato cultivation. Potatoes could be grown in poor soil conditions and required less labor and resources compared to other crops, making them a profitable crop for farmers.\n\nOverall, Frederick the Great's fondness for potatoes was driven by their nutritional value, ease of cultivation, and economic benefits, all of which contributed to improving the food security and well-being of his subjects."
 ```
 
 The `format_chat()` function allows users to create a chat prompt using

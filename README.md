@@ -15,6 +15,12 @@ classification and scaling tasks.
 
 ## Installation
 
+You can install the release version of
+
+``` r
+install.packages('promptr')
+```
+
 You can install the development version of `promptr` from
 [GitHub](https://github.com/) with:
 
@@ -52,11 +58,11 @@ library(promptr)
 
 complete_prompt('I feel like a')
 #>    token probability
-#> 1    lot  0.20988471
-#> 2 little  0.02118223
-#> 3    kid  0.01375048
-#> 4    new  0.01209021
-#> 5    big  0.01204560
+#> 1    lot  0.20996150
+#> 2 little  0.02118759
+#> 3    kid  0.01375388
+#> 4    new  0.01208470
+#> 5    big  0.01204666
 ```
 
 If you prefer the model to autoregressively generate text instead of
@@ -167,11 +173,11 @@ with `complete_prompt()`:
 ``` r
 complete_prompt(prompt)
 #>     token  probability
-#> 1     sad 9.990239e-01
-#> 2     sad 6.418412e-04
-#> 3     Sad 1.966701e-04
-#> 4   happy 3.690875e-05
-#> 5 sadness 2.776948e-05
+#> 1     sad 9.990238e-01
+#> 2     sad 6.485950e-04
+#> 3     Sad 1.924722e-04
+#> 4   happy 3.407219e-05
+#> 5 sadness 2.775210e-05
 ```
 
 The full pipeline—first formatting the text into a prompt, then
@@ -206,11 +212,11 @@ texts |>
   complete_prompt()
 #> [[1]]
 #>     token  probability
-#> 1     sad 0.9845923503
-#> 2   happy 0.0101702041
-#> 3     sad 0.0022756506
-#> 4 unhappy 0.0005526699
-#> 5         0.0005016985
+#> 1     sad 0.9841034277
+#> 2   happy 0.0104374049
+#> 3     sad 0.0023295706
+#> 4 unhappy 0.0005694547
+#> 5         0.0005513914
 #> 
 #> [[2]]
 #>   token  probability
@@ -222,11 +228,11 @@ texts |>
 #> 
 #> [[3]]
 #>    token  probability
-#> 1  happy 0.9959302565
-#> 2  happy 0.0013791755
-#> 3        0.0009389405
-#> 4 unsure 0.0001865297
-#> 5        0.0001515698
+#> 1  happy 0.9957006846
+#> 2  happy 0.0012367921
+#> 3        0.0009202636
+#> 4 unsure 0.0002593114
+#> 5        0.0001682163
 ```
 
 ## Example: Supreme Court Tweets
@@ -329,7 +335,7 @@ ggplot(data = masterpiece_tweets,
   theme_bw()
 ```
 
-<img src="man/figures/README-unnamed-chunk-15-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-16-1.png" width="100%" />
 
 ## Chat Completions
 
@@ -357,7 +363,7 @@ chat model offered through the API as of February 2024).
 
 ``` r
 complete_chat(prompt, max_tokens = 300)
-#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for his subjects, especially during times of famine or food shortages.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia as a way to improve agricultural productivity and food security. Potatoes are a hardy crop that can grow in a variety of soil conditions and climates, making them a reliable and sustainable food source.\n\nFurthermore, Frederick saw the potential economic benefits of promoting potato cultivation. Potatoes were a relatively inexpensive crop to grow and could be used to feed both humans and livestock, helping to reduce food costs and increase agricultural output.\n\nOverall, Frederick the Great's fondness for potatoes was driven by a combination of their nutritional value, agricultural benefits, and economic advantages, making them a valuable and important crop in Prussia during his reign."
+#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for his subjects, especially during times of famine or food shortages.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia as a way to improve agricultural productivity and food security. Potatoes are a hardy crop that can grow in a variety of soil conditions and climates, making them a reliable and sustainable food source.\n\nFurthermore, Frederick saw the potential economic benefits of promoting potato cultivation. Potatoes were a relatively inexpensive crop to grow and could be used to feed both humans and livestock, reducing the reliance on more expensive food sources.\n\nOverall, Frederick the Great's fondness for potatoes was driven by a combination of their nutritional value, agricultural benefits, and economic advantages."
 ```
 
 The `format_chat()` function allows users to create a chat prompt using
@@ -496,10 +502,25 @@ disadvantage is that we can only submit one chat to the API at a time.
 ``` r
 response <- complete_chat(prompt)
 response
-#>      token  probability
-#> 1 Positive 6.812474e-01
-#> 2  Neutral 3.082982e-01
-#> 3    Mixed 6.463463e-03
-#> 4 Negative 3.971882e-03
-#> 5      Mix 5.928140e-06
+#>        token  probability
+#> 1   Positive 6.608987e-01
+#> 2    Neutral 3.352583e-01
+#> 3   Negative 2.338902e-03
+#> 4      Mixed 1.490763e-03
+#> 5   positive 2.285131e-06
+#> 6    Neutral 2.085865e-06
+#> 7       Post 1.843992e-06
+#> 8   Positive 1.416396e-06
+#> 9        Mix 1.166352e-06
+#> 10   neutral 9.652960e-07
+#> 11        Ne 9.066875e-07
+#> 12       Pos 5.314961e-07
+#> 13         N 4.907613e-07
+#> 14       Net 3.236860e-07
+#> 15 _positive 6.864586e-08
+#> 16         - 6.351409e-08
+#> 17         I 6.267946e-08
+#> 18       Neg 6.122410e-08
+#> 19     mixed 5.214065e-08
+#> 20         M 5.136340e-08
 ```

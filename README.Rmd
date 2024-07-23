@@ -24,6 +24,12 @@ We developed the `promptr` package so that researchers could easily format and s
 
 ## Installation
 
+You can install the release version of 
+
+```{r, eval = FALSE}
+install.packages('promptr')
+```
+
 You can install the development version of `promptr` from [GitHub](https://github.com/) with:
 
 ``` r

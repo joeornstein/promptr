@@ -1,6 +1,6 @@
 Package: promptr
 Title: Format and Complete Few-Shot LLM Prompts
-Version: 2.0.0
+Version: 3.0.0
 Authors@R: 
     person("Joe", "Ornstein", , "jornstein@uga.edu", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-5704-2098"))

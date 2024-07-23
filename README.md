@@ -29,13 +29,10 @@ You can install the development version of `promptr` from
 devtools::install_github("joeornstein/promptr")
 ```
 
-You will also need an account with OpenAI. You can sign up
-[here](https://beta.openai.com/signup), after which you’ll need to
-generate an API key
-[here](https://platform.openai.com/account/api-keys). For best
-performance, you may also want to provide credit card information (this
-significantly boosts your API rate limit, even if you’re not spending
-money).
+You will also need a developer account with OpenAI and an API key. For
+best performance, you may also want to provide credit card information
+(this significantly boosts your API rate limit, even if you’re not
+spending money).
 
 Once your account is created, copy-paste your API key into the following
 line of R code.
@@ -58,11 +55,11 @@ library(promptr)
 
 complete_prompt('I feel like a')
 #>    token probability
-#> 1    lot  0.20996150
-#> 2 little  0.02118759
-#> 3    kid  0.01375388
-#> 4    new  0.01208470
-#> 5    big  0.01204666
+#> 1    lot  0.20993738
+#> 2 little  0.02117687
+#> 3    kid  0.01376141
+#> 4    new  0.01209059
+#> 5    big  0.01202617
 ```
 
 If you prefer the model to autoregressively generate text instead of
@@ -78,9 +75,8 @@ complete_prompt('I feel like a', max_tokens = 18)
 Note that by default, the `temperature` input is set to 0, which means
 the model will always return the most likely completion for your prompt.
 Increasing temperature allows the model to randomly select words from
-its estimated probability distribution (see the [API
-reference](https://platform.openai.com/docs/api-reference/completions)
-for more on these parameters).
+its estimated probability distribution (see the API reference for more
+on these parameters).
 
 You can also change which model variant the function calls using the
 `model` input. By default, it is set to “gpt-3.5-turbo-instruct”, the
@@ -173,11 +169,11 @@ with `complete_prompt()`:
 ``` r
 complete_prompt(prompt)
 #>     token  probability
-#> 1     sad 9.990238e-01
-#> 2     sad 6.485950e-04
-#> 3     Sad 1.924722e-04
-#> 4   happy 3.407219e-05
-#> 5 sadness 2.775210e-05
+#> 1     sad 9.990239e-01
+#> 2     sad 6.418412e-04
+#> 3     Sad 1.966701e-04
+#> 4   happy 3.690875e-05
+#> 5 sadness 2.776948e-05
 ```
 
 The full pipeline—first formatting the text into a prompt, then
@@ -189,11 +185,11 @@ submitting the prompt for completion—looks like this:
                 examples = examples) |> 
   complete_prompt()
 #>     token  probability
-#> 1     sad 0.9931754130
-#> 2   happy 0.0023576333
-#> 3     sad 0.0021634900
-#> 4     Sad 0.0007275062
-#> 5 unhappy 0.0006792638
+#> 1     sad 0.9932038709
+#> 2   happy 0.0023338934
+#> 3     sad 0.0021613907
+#> 4     Sad 0.0007306434
+#> 5 unhappy 0.0006758881
 ```
 
 The biggest advantage of using text prompts like these is
@@ -363,7 +359,7 @@ chat model offered through the API as of February 2024).
 
 ``` r
 complete_chat(prompt, max_tokens = 300)
-#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for his subjects, especially during times of famine or food shortages.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia as a way to improve agricultural productivity and food security. Potatoes are a hardy crop that can grow in a variety of soil conditions and climates, making them a reliable and sustainable food source.\n\nFurthermore, Frederick saw the potential economic benefits of promoting potato cultivation. Potatoes were a relatively inexpensive crop to grow and could be used to feed both humans and livestock, reducing the reliance on more expensive food sources.\n\nOverall, Frederick the Great's fondness for potatoes was driven by a combination of their nutritional value, agricultural benefits, and economic advantages."
+#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for his subjects, especially during times of famine or food shortages.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia because they were easy to grow and had a high yield compared to other crops. This made potatoes a cost-effective and efficient food source for the population.\n\nFurthermore, Frederick saw the potential of potatoes to improve the agricultural economy of Prussia. By encouraging the cultivation of potatoes, he aimed to reduce the country's dependence on imported grains and increase self-sufficiency in food production.\n\nOverall, Frederick the Great's fondness for potatoes was driven by their nutritional value, ease of cultivation, and potential to improve the economy and food security of Prussia."
 ```
 
 The `format_chat()` function allows users to create a chat prompt using
@@ -503,24 +499,24 @@ disadvantage is that we can only submit one chat to the API at a time.
 response <- complete_chat(prompt)
 response
 #>        token  probability
-#> 1   Positive 6.608987e-01
-#> 2    Neutral 3.352583e-01
-#> 3   Negative 2.338902e-03
-#> 4      Mixed 1.490763e-03
-#> 5   positive 2.285131e-06
-#> 6    Neutral 2.085865e-06
-#> 7       Post 1.843992e-06
-#> 8   Positive 1.416396e-06
-#> 9        Mix 1.166352e-06
-#> 10   neutral 9.652960e-07
-#> 11        Ne 9.066875e-07
-#> 12       Pos 5.314961e-07
-#> 13         N 4.907613e-07
-#> 14       Net 3.236860e-07
-#> 15 _positive 6.864586e-08
-#> 16         - 6.351409e-08
-#> 17         I 6.267946e-08
-#> 18       Neg 6.122410e-08
-#> 19     mixed 5.214065e-08
-#> 20         M 5.136340e-08
+#> 1   Positive 7.429916e-01
+#> 2    Neutral 2.502619e-01
+#> 3      Mixed 4.139116e-03
+#> 4   Negative 2.593999e-03
+#> 5        Mix 3.081574e-06
+#> 6   positive 2.345746e-06
+#> 7       Post 1.588753e-06
+#> 8    Neutral 1.332814e-06
+#> 9   Positive 1.312593e-06
+#> 10       Pos 6.778865e-07
+#> 11   neutral 6.356276e-07
+#> 12        Ne 5.733893e-07
+#> 13         N 3.286492e-07
+#> 14       Net 2.299116e-07
+#> 15     mixed 1.221025e-07
+#> 16 _positive 6.954137e-08
+#> 17         M 6.902411e-08
+#> 18       Neg 6.449372e-08
+#> 19         - 5.552142e-08
+#> 20         A 4.266581e-08
 ```

@@ -37,7 +37,7 @@ You can install the development version of `promptr` from [GitHub](https://githu
 devtools::install_github("joeornstein/promptr")
 ```
 
-You will also need an account with OpenAI. You can sign up [here](https://beta.openai.com/signup), after which you'll need to generate an API key [here](https://platform.openai.com/account/api-keys). For best performance, you may also want to provide credit card information (this significantly boosts your API rate limit, even if you’re not spending money).
+You will also need a developer account with OpenAI and an API key. For best performance, you may also want to provide credit card information (this significantly boosts your API rate limit, even if you’re not spending money).
 
 Once your account is created, copy-paste your API key into the following line of R code.
 
@@ -65,7 +65,7 @@ If you prefer the model to autoregressively generate text instead of outputting 
 complete_prompt('I feel like a', max_tokens = 18)
 ```
 
-Note that by default, the `temperature` input is set to 0, which means the model will always return the most likely completion for your prompt. Increasing temperature allows the model to randomly select words from its estimated probability distribution (see the [API reference](https://platform.openai.com/docs/api-reference/completions) for more on these parameters).
+Note that by default, the `temperature` input is set to 0, which means the model will always return the most likely completion for your prompt. Increasing temperature allows the model to randomly select words from its estimated probability distribution (see the API reference for more on these parameters).
 
 You can also change which model variant the function calls using the `model` input. By default, it is set to "gpt-3.5-turbo-instruct", the RLHF variant of GPT-3.5. For the base GPT-3 variants, try "davinci-002" (175 billion parameters) or "babbage-002" (1.3 billion parameters).
 

@@ -36,6 +36,8 @@ If max_tokens = 1, returns a dataframe with the 5 most likely next-word response
 Submits a prompt to OpenAI's "Chat" API endpoint and formats the response into a string or tidy dataframe.
 }
 \examples{
+\dontrun{
 format_chat('Are frogs sentient? Yes or No.') |> complete_chat()
 format_chat('Write a haiku about frogs.') |> complete_chat(max_tokens = 100)
+}
 }

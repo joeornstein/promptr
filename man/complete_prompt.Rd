@@ -36,7 +36,9 @@ If max_tokens = 1, returns a dataframe with the 5 most likely next words and the
 Submits a text prompt to OpenAI's "Completion" API endpoint and formats the response into a string or tidy dataframe. (Note that, as of 2024, this endpoint is considered "Legacy" by OpenAI and is likely to be deprecated.)
 }
 \examples{
+\dontrun{
 complete_prompt('I feel like a')
 complete_prompt('Here is my haiku about frogs:',
                 max_tokens = 100)
+}
 }

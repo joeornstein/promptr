@@ -55,11 +55,11 @@ library(promptr)
 
 complete_prompt('I feel like a')
 #>    token probability
-#> 1    lot  0.20988509
-#> 2 little  0.02118226
-#> 3    kid  0.01375050
-#> 4    new  0.01209023
-#> 5    big  0.01204562
+#> 1    lot  0.20985606
+#> 2 little  0.02118042
+#> 3    kid  0.01374532
+#> 4    new  0.01208388
+#> 5    big  0.01204145
 ```
 
 If you prefer the model to autoregressively generate text instead of
@@ -169,11 +169,11 @@ with `complete_prompt()`:
 ``` r
 complete_prompt(prompt)
 #>     token  probability
-#> 1     sad 9.990239e-01
-#> 2     sad 6.418412e-04
-#> 3     Sad 1.966701e-04
-#> 4   happy 3.690875e-05
-#> 5 sadness 2.776948e-05
+#> 1     sad 9.990284e-01
+#> 2     sad 6.382159e-04
+#> 3     Sad 1.961563e-04
+#> 4   happy 3.677703e-05
+#> 5 sadness 2.776648e-05
 ```
 
 The full pipeline—first formatting the text into a prompt, then
@@ -224,11 +224,11 @@ texts |>
 #> 
 #> [[3]]
 #>    token  probability
-#> 1  happy 0.9959302565
-#> 2  happy 0.0013791755
-#> 3        0.0009389405
-#> 4 unsure 0.0001865297
-#> 5        0.0001515698
+#> 1  happy 0.9957006846
+#> 2  happy 0.0012367921
+#> 3        0.0009202636
+#> 4 unsure 0.0002593114
+#> 5        0.0001682163
 ```
 
 ## Example: Supreme Court Tweets
@@ -359,7 +359,7 @@ chat model offered through the API as of February 2024).
 
 ``` r
 complete_chat(prompt, max_tokens = 300)
-#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for his subjects, especially during times of famine or food shortages.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia because they were easy to grow and had a high yield compared to other crops. This made potatoes a cost-effective and sustainable food source for the population.\n\nFurthermore, Frederick saw the potential economic benefits of promoting potato cultivation. Potatoes could be grown in poor soil conditions and required less labor and resources compared to other crops, making them a profitable crop for farmers.\n\nOverall, Frederick the Great's fondness for potatoes was driven by their nutritional value, ease of cultivation, and economic benefits, all of which contributed to improving the food security and well-being of his subjects."
+#> [1] "Frederick the Great, also known as Frederick II of Prussia, was fond of potatoes for several reasons. One of the main reasons was that he recognized the nutritional value and versatility of potatoes. Potatoes are a rich source of carbohydrates, vitamins, and minerals, making them a valuable food source for his subjects, especially during times of famine or food shortages.\n\nAdditionally, Frederick promoted the cultivation of potatoes in Prussia because they were easy to grow and had a high yield compared to other crops. This made potatoes a cost-effective and efficient food source for the population.\n\nFurthermore, Frederick saw the potential of potatoes as a way to improve the agricultural productivity of his kingdom. By encouraging the cultivation of potatoes, he aimed to increase food security and reduce dependence on imported grains.\n\nOverall, Frederick the Great's fondness for potatoes was driven by their nutritional value, ease of cultivation, and potential to improve agricultural productivity in Prussia."
 ```
 
 The `format_chat()` function allows users to create a chat prompt using
@@ -499,24 +499,24 @@ disadvantage is that we can only submit one chat to the API at a time.
 response <- complete_chat(prompt)
 response
 #>        token  probability
-#> 1   Positive 7.429916e-01
-#> 2    Neutral 2.502619e-01
-#> 3      Mixed 4.139116e-03
-#> 4   Negative 2.593999e-03
-#> 5        Mix 3.081574e-06
-#> 6   positive 2.345746e-06
-#> 7       Post 1.588753e-06
-#> 8    Neutral 1.332814e-06
-#> 9   Positive 1.312593e-06
-#> 10       Pos 6.778865e-07
-#> 11   neutral 6.356276e-07
-#> 12        Ne 5.733893e-07
-#> 13         N 3.286492e-07
-#> 14       Net 2.299116e-07
-#> 15     mixed 1.221025e-07
-#> 16 _positive 6.954137e-08
-#> 17         M 6.902411e-08
-#> 18       Neg 6.449372e-08
-#> 19         - 5.552142e-08
-#> 20         A 4.266581e-08
+#> 1   Positive 7.849799e-01
+#> 2    Neutral 2.110320e-01
+#> 3   Negative 2.354229e-03
+#> 4      Mixed 1.621902e-03
+#> 5   positive 2.702952e-06
+#> 6       Post 1.892515e-06
+#> 7   Positive 1.472733e-06
+#> 8    Neutral 1.242802e-06
+#> 9        Mix 1.100770e-06
+#> 10   neutral 5.678884e-07
+#> 11        Ne 5.622518e-07
+#> 12       Pos 5.392126e-07
+#> 13         N 3.356456e-07
+#> 14       Net 2.261731e-07
+#> 15 _positive 8.153610e-08
+#> 16         - 6.318000e-08
+#> 17         M 5.630869e-08
+#> 18         I 4.956445e-08
+#> 19     mixed 4.791496e-08
+#> 20 .Positive 4.363649e-08
 ```

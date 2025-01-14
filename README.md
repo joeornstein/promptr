@@ -15,13 +15,13 @@ classification and scaling tasks.
 
 ## Installation
 
-You can install the release version of
+You can install the release version of `promptr` from CRAN with:
 
 ``` r
 install.packages('promptr')
 ```
 
-You can install the development version of `promptr` from
+Or you can install the latest development version from
 [GitHub](https://github.com/) with:
 
 ``` r

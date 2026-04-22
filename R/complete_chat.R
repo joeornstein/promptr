@@ -31,6 +31,10 @@ complete_chat <- function(prompt,
     stop("No API key detected in system environment. You can enter it manually using the 'openai_api_key' argument.")
   }
 
+  if(max_tokens == 1 && model != 'gpt-3.5-turbo'){
+    warning("The default max_tokens = 1 behavior (next-token probability prediction) was designed for 'gpt-3.5-turbo' and may not be supported by '", model, "'. Set max_tokens > 1 to generate text instead.")
+  }
+
   # function to return a formatted API request
   format_request <- function(prompt,
                              base_url = "https://api.openai.com/v1/chat/completions"){
@@ -47,7 +51,7 @@ complete_chat <- function(prompt,
       httr2::req_body_json(list(model = model,
                                 messages = prompt,
                                 temperature = temperature,
-                                max_tokens = max_tokens,
+                                max_completion_tokens = max_tokens,
                                 logprobs = logprobs,
                                 top_logprobs = top_logprobs,
                                 seed = seed)) #|>
